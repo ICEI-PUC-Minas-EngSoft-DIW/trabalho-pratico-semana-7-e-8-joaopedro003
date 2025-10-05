@@ -14,7 +14,7 @@ Leia o enunciado completo no Canvas.
 
 - Nome:João Pedro Alvarenga Santos  
 - Matricula:898440
-- Proposta de projeto escolhida:
+- Proposta de projeto escolhida:Lugares e Experiências
 - Breve descrição sobre seu projeto: Site para divulgação de experiências em lugares turísticos, trilhas, balão e museus.
 
 ## Print da Home-Page
