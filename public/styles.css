@@ -1,0 +1,143 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Header */
+header.site-header {
+    background: linear-gradient(135deg, #4CAF50, #2e7d32);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+header.site-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+header.site-header p {
+    font-size: 1.2rem;
+}
+
+/* Cards */
+.activities .card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    margin-bottom: 30px;
+}
+
+.activities .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.15);
+}
+
+.activities .card img {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 1rem 0 0.5rem;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5em 1.2em;
+    background: #4CAF50;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-secondary {
+    background: #333;
+}
+
+.btn-primary {
+    background: #2e7d32;
+}
+
+.badge {
+    display: inline-block;
+    background: #2e7d32;
+    color: #fff;
+    padding: 0.3em 0.8em;
+    border-radius: 12px;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
+/* Footer */
+footer.site-footer {
+    background-color: #1b1b1b;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+footer.site-footer a {
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+footer.site-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Container and grid */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.col-12 {
+    flex: 1 1 100%;
+}
+
+.col-md-6 {
+    flex: 1 1 48%;
+}
+
+.col-lg-4 {
+    flex: 1 1 31%;
+}
+
+@media (max-width: 900px) {
+    .col-lg-4 { flex-basis: 48%; }
+}
+@media (max-width: 600px) {
+    .row { flex-direction: column; gap: 16px; }
+    .col-lg-4, .col-md-6, .col-12 { flex-basis: 100%; }
+}

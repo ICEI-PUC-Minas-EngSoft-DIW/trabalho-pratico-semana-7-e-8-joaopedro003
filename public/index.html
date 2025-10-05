@@ -2,41 +2,80 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Detalhes do Lugar</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Explorando Lugares</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main class="py-5">
-        <div class="container" id="detalhes-container">
-            <!-- Detalhes via JS -->
-        </div>
-        <div class="text-center mt-3">
-            <a href="index.html" class="btn btn-secondary">Voltar para Home</a>
-        </div>
-    </main>
-    <script src="js/app.js"></script>
+    <div id="main-content"></div>
+    <script src="app.js"></script>
     <script>
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
     }
+
     document.addEventListener("DOMContentLoaded", function() {
         const id = getQueryParam("id");
-        const lugar = lugares.find(l => l.id == id);
-        const container = document.getElementById("detalhes-container");
-        if (lugar) {
-            container.innerHTML = `
-                <div class="card mx-auto" style="max-width:600px;">
-                    <img src="${lugar.imagem}" class="card-img-top" alt="${lugar.titulo}">
-                    <div class="card-body">
-                        <h2 class="card-title">${lugar.titulo}</h2>
-                        <p class="card-text">${lugar.conteudo}</p>
-                        <span class="badge bg-success">${lugar.categoria}</span>
-                    </div>
-                </div>
-            `;
+        const main = document.getElementById("main-content");
+        if (id) {
+            // Página de detalhes
+            if (typeof lugares !== 'undefined' && Array.isArray(lugares)) {
+                const lugar = lugares.find(l => String(l.id) === String(id));
+                if (lugar) {
+                    main.innerHTML = `
+                        <main class="py-5 activities">
+                            <div class="container" id="detalhes-container">
+                                <div class="card mx-auto" style="max-width:600px;">
+                                    <img src="${lugar.imagem}" class="card-img-top" alt="${lugar.titulo}">
+                                    <div class="card-body">
+                                        <h2 class="card-title">${lugar.titulo}</h2>
+                                        <p class="card-text">${lugar.conteudo}</p>
+                                        <span class="badge bg-success">${lugar.categoria}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="index" class="btn btn-secondary">Voltar para Home</a>
+                            </div>
+                        </main>
+                    `;
+                } else {
+                    main.innerHTML = `<p>Lugar não encontrado (id inválido).</p><a href="index" class="btn btn-secondary">Voltar para Home</a>`;
+                }
+            } else {
+                main.innerHTML = `<p>Erro ao carregar dados!</p><a href="index" class="btn btn-secondary">Voltar para Home</a>`;
+            }
         } else {
-            container.innerHTML = `<p>Lugar não encontrado.</p>`;
+            // Página principal (lista de lugares)
+            main.innerHTML = `
+                <header class="site-header">
+                    <h1>Explorando Lugares</h1>
+                    <p>Descubra experiências incríveis!</p>
+                </header>
+                <section class="activities py-5">
+                    <div class="container">
+                        <div class="row g-4" id="cards-container"></div>
+                    </div>
+                </section>
+                <footer class="site-footer">
+                    © 2025 Explorando Lugares
+                </footer>
+            `;
+            const container = document.getElementById('cards-container');
+            lugares.forEach(lugar => {
+                container.innerHTML += `
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="${lugar.imagem}" class="card-img-top" alt="${lugar.titulo}">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">${lugar.titulo}</h3>
+                                <p class="card-text">${lugar.descricao}</p>
+                                <a href="index?id=${lugar.id}" class="btn btn-primary mt-2">Ver detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
         }
     });
     </script>
