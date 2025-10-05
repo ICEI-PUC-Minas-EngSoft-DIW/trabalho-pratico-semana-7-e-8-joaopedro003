@@ -12,10 +12,10 @@ Leia o enunciado completo no Canvas.
 
 ## Informações Gerais
 
-- Nome:
-- Matricula:
+- Nome:João Pedro Alvarenga Santos  
+- Matricula:898440
 - Proposta de projeto escolhida:
-- Breve descrição sobre seu projeto:
+- Breve descrição sobre seu projeto: Site para divulgação de experiências em lugares turísticos, trilhas, balão e museus.
 
 ## Print da Home-Page
 
