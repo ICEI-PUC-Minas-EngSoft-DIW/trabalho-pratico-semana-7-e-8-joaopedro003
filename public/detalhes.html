@@ -1,9 +1,49 @@
-public/
- ├── index
- ├── detalhes.html
- ├── app.js
- ├── styles.css
- ├── img/
-      ├── trilha.jpg
-      ├── balao.png
-      └── museu.jpg
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Lugar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="py-5 activities">
+        <div class="container" id="detalhes-container"></div>
+        <div class="text-center mt-3">
+            <a href="index" class="btn btn-secondary">Voltar para Home</a>
+        </div>
+    </main>
+    <footer class="site-footer">
+        © 2025 Explorando Lugares
+    </footer>
+    <script src="app.js"></script>
+    <script>
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        const id = getQueryParam("id");
+        const container = document.getElementById("detalhes-container");
+        if (typeof lugares !== 'undefined' && Array.isArray(lugares)) {
+            const lugar = lugares.find(l => String(l.id) === String(id));
+            if (lugar) {
+                container.innerHTML = `
+                    <div class="card mx-auto" style="max-width:600px;">
+                        <img src="${lugar.imagem}" class="card-img-top" alt="${lugar.titulo}">
+                        <div class="card-body">
+                            <h2 class="card-title">${lugar.titulo}</h2>
+                            <p class="card-text">${lugar.conteudo}</p>
+                            <span class="badge bg-success">${lugar.categoria}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `<p>Lugar não encontrado (id inválido).</p>`;
+            }
+        } else {
+            container.innerHTML = `<p>Erro ao carregar dados!</p>`;
+        }
+    });
+    </script>
+</body>
+</html>
